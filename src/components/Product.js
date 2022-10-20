@@ -2,18 +2,27 @@ import Image from 'next/image'
 import React, { useState } from 'react'
 import {AiFillStar} from 'react-icons/ai'
 import Currency from 'react-currency-formatter';
+import { useDispatch } from 'react-redux';
+import { addToBasket } from '../slices/basketSlice';
 
 const MAX_RATING = 5;
 const MIN_RATING = 1;
 
 function Product({id,image,category, price, description, title}) {
+    const dispatch = useDispatch();
      const [rating] = useState(
         Math.floor(Math.random() * (MAX_RATING - MIN_RATING + 1)) + MIN_RATING
      )
      const  [hasPrime] = useState(Math.random() < 0.5);
 
+     const addItemToBasket = () => {
+       const product = {
+        id,image,category, price,hasPrime, rating, description, title
+       }
+       dispatch(addToBasket(product))
+     }
   return (
-    <div className='relative flex flex-col m-5 p-10 bg-white shadow-sm z-30'>
+    <div className='relative flex flex-col m-5 p-10 bg-white shadow-sm z-30 '>
         <p className='absolute top-2 right-2'>{category}</p>
         <Image
         src={image}
@@ -24,8 +33,8 @@ function Product({id,image,category, price, description, title}) {
         <h3 className='my-3'>{title}</h3>
         <div className='flex items-center'>
 
-        {Array(rating).fill().map((_,i) => (
-            <AiFillStar className='h-5 w-5 text-yellow-400'/>
+        {Array(rating).fill().map((_, i) => (
+            <AiFillStar  className='h-5 w-5 text-yellow-400'/>
 
         ))}
       
@@ -45,7 +54,7 @@ function Product({id,image,category, price, description, title}) {
     </div>
     )}
 
-    <button className='button font-semibold'>Add to Basket</button>
+    <button onClick={addItemToBasket} className='button font-semibold'>Add to Basket</button>
     </div>
   )
 }
