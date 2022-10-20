@@ -47,8 +47,8 @@ function Checkout() {
             <div className=" ">
                 <h2 className="flex items-center text-sm whitespace-nowrap w-56">Subtotal 
                 (${items.length} items:) 
-                <span className="pl-1 font-bold text-sm">
-    <Currency quantity={total} currency="GBP"/>
+                <span className="pl-1 font-bold text-sm ">
+    <Currency  quantity={total} currency="GBP"/>
                 </span>
                 </h2>
                 <button disabled={!session} className={`button  mt-2 ${!session && (
@@ -60,6 +60,7 @@ function Checkout() {
         )}
     </div>
     </main>
+    <h1 ></h1>
 </div>
   )
 }

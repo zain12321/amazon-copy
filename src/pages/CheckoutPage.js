@@ -38,12 +38,12 @@ function CheckoutPage({id,image,category, price, description, title, hasPrime}) 
     ))}
     </div>
  <div className="text-sm line-clamp-3 my-2">{description}</div>
-   <Currency className='text-2xl text-gray-500 my-2' quantity={price} currency='GBP'/>
+   <Currency className='text-2xl text-gray-500 my-2 z-50' quantity={price} currency='GBP'/>
    
    {hasPrime && (
         <div className='flex items-center space-x-2 -mt-5'>
         <img 
-        className='w-12'
+        className='w-12 h-7'
         src="https://whitebox.com/wp-content/uploads/2020/05/Prime-tag-.png"
         alt='' />
         <p className='text-xs text-gray-400'>Free Next day delivery</p>
